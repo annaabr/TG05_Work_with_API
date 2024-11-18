@@ -1,7 +1,7 @@
 import asyncio
 import requests
 from aiogram import Bot, Dispatcher
-from aiogram.filters import Command
+from aiogram.filters import Command, CommandStart
 from aiogram.types import Message
 
 from config import TOKEN, THE_CAT_API_KEY
@@ -34,9 +34,16 @@ def get_breed_info(breed_name):
            return breed
    return None
 
+'''
 @dp.message(Command("start"))
 async def start_command(message: Message):
    await message.answer("Привет! Напиши мне название породы кошки, и я пришлю тебе её фото и описание.")
+'''
+
+@dp.message(CommandStart())
+async def start(message: Message):
+   await message.answer("Привет! Напиши мне название породы кошки, и я пришлю тебе её фото и описание.")
+
 
 @dp.message()
 async def send_cat_info(message: Message):
@@ -45,11 +52,11 @@ async def send_cat_info(message: Message):
    if breed_info:
        cat_image_url = get_cat_image_by_breed(breed_info['id'])
        info = (
-           f"Breed: {breed_info['name']}\n"
-           f"Origin: {breed_info['origin']}\n"
-           f"Description: {breed_info['description']}\n"
-           f"Temperament: {breed_info['temperament']}\n"
-           f"Life Span: {breed_info['life_span']} years"
+           f"Порода: {breed_info['name']}\n"
+           f"Родина: {breed_info['origin']}\n"
+           f"Описание: {breed_info['description']}\n"
+           f"Темперамент: {breed_info['temperament']}\n"
+           f"Продолжительность жизна: {breed_info['life_span']} лет"
        )
        await message.answer_photo(photo=cat_image_url, caption=info)
    else:

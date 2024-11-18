@@ -29,9 +29,9 @@ async def random_apod(message: Message):
 
    await message.answer_photo(photo=photo_url, caption=f"{title}")
 
-async def main2():
+async def main():
    await dp.start_polling(bot)
 
-if __name__ == '__main2__':
-   asyncio.run(main2())
+if __name__ == '__main__':
+   asyncio.run(main())
 
