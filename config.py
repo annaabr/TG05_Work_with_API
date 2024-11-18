@@ -1,0 +1,5 @@
+TOKEN = '8194776682:AAGjandhAyItUX-lqED2rIyxkzsmxTySeqw'
+
+THE_CAT_API_KEY = ''
+
+NASA_API_KEY = ''
